@@ -1,83 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# # All Vagrant configuration is done below. The "2" in Vagrant.configure
-# # configures the configuration version (we support older styles for
-# # backwards compatibility). Please don't change it unless you know what
-# # you're doing.
-# Vagrant.configure("2") do |config|
-#   # The most common configuration options are documented and commented below.
-#   # For a complete reference, please see the online documentation at
-#   # https://docs.vagrantup.com.
-
-#   # Every Vagrant development environment requires a box. You can search for
-#   # boxes at https://vagrantcloud.com/search.
-#   config.vm.box = "base"
-
-#   # Disable automatic box update checking. If you disable this, then
-#   # boxes will only be checked for updates when the user runs
-#   # `vagrant box outdated`. This is not recommended.
-#   # config.vm.box_check_update = false
-
-#   # Create a forwarded port mapping which allows access to a specific port
-#   # within the machine from a port on the host machine. In the example below,
-#   # accessing "localhost:8080" will access port 80 on the guest machine.
-#   # NOTE: This will enable public access to the opened port
-#   # config.vm.network "forwarded_port", guest: 80, host: 8080
-
-#   # Create a forwarded port mapping which allows access to a specific port
-#   # within the machine from a port on the host machine and only allow access
-#   # via 127.0.0.1 to disable public access
-#   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-
-#   # Create a private network, which allows host-only access to the machine
-#   # using a specific IP.
-#   # config.vm.network "private_network", ip: "192.168.33.10"
-
-#   # Create a public network, which generally matched to bridged network.
-#   # Bridged networks make the machine appear as another physical device on
-#   # your network.
-#   # config.vm.network "public_network"
-
-#   # Share an additional folder to the guest VM. The first argument is
-#   # the path on the host to the actual folder. The second argument is
-#   # the path on the guest to mount the folder. And the optional third
-#   # argument is a set of non-required options.
-#   # config.vm.synced_folder "../data", "/vagrant_data"
-
-#   # Disable the default share of the current code directory. Doing this
-#   # provides improved isolation between the vagrant box and your host
-#   # by making sure your Vagrantfile isn't accessible to the vagrant box.
-#   # If you use this you may want to enable additional shared subfolders as
-#   # shown above.
-#   # config.vm.synced_folder ".", "/vagrant", disabled: true
-
-#   # Provider-specific configuration so you can fine-tune various
-#   # backing providers for Vagrant. These expose provider-specific options.
-#   # Example for VirtualBox:
-#   #
-#   # config.vm.provider "virtualbox" do |vb|
-#   #   # Display the VirtualBox GUI when booting the machine
-#   #   vb.gui = true
-#   #
-#   #   # Customize the amount of memory on the VM:
-#   #   vb.memory = "1024"
-#   # end
-#   #
-#   # View the documentation for the provider you are using for more
-#   # information on available options.
-
-#   # Enable provisioning with a shell script. Additional provisioners such as
-#   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
-#   # documentation for more information about their specific syntax and use.
-#   # config.vm.provision "shell", inline: <<-SHELL
-#   #   apt-get update
-#   #   apt-get install -y apache2
-#   # SHELL
-#   config.vm.box = "ubuntu/focal64"
-# end
-
 Vagrant.configure("2") do |config|
+
   # Define the master VM
   config.vm.define "mysql-master" do |master|
     master.vm.box = "ubuntu/focal64"
@@ -99,10 +24,17 @@ Vagrant.configure("2") do |config|
       sudo mysql -u root -prootpassword -e "GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';"
       mysqldump -u root -prootpassword --all-databases --master-data > /vagrant/masterdump.sql
       # Create .my.cnf for root user
-      echo "[client]" > /home/vagrant/.my.cnf
-      echo "user=root" >> /home/vagrant/.my.cnf
-      echo "password=rootpassword" >> /home/vagrant/.my.cnf
-      chmod 600 /home/vagrant/.my.cnf
+      echo "[client]" > /var/lib/prometheus/.my.cnf
+      echo "user=root" >> /var/lib/prometheus/.my.cnf
+      echo "password=rootpassword" >> /var/lib/prometheus/.my.cnf
+      chmod 600 /var/lib/prometheus/.my.cnf
+      # Install MySQL Exporter
+      sudo apt-get install -y prometheus-mysqld-exporter
+      sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
+      DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/"
+      EOF
+      sudo systemctl restart prometheus-mysqld-exporter
+      sudo systemctl enable prometheus-mysqld-exporter
     SHELL
   end
 
@@ -126,10 +58,17 @@ Vagrant.configure("2") do |config|
       mysql -u root -pslavepassword < /vagrant/masterdump.sql
       mysql -u root -pslavepassword -e "START SLAVE;"
       # Create .my.cnf for root user
-      echo "[client]" > /home/vagrant/.my.cnf
-      echo "user=root" >> /home/vagrant/.my.cnf
-      echo "password=rootpassword" >> /home/vagrant/.my.cnf
-      chmod 600 /home/vagrant/.my.cnf
+      echo "[client]" > /var/lib/prometheus/.my.cnf
+      echo "user=root" >> /var/lib/prometheus/.my.cnf
+      echo "password=rootpassword" >> /var/lib/prometheus/.my.cnf
+      chmod 600 /var/lib/prometheus/.my.cnf
+      # Install MySQL Exporter
+      sudo apt-get install -y prometheus-mysqld-exporter
+      sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
+      DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/"
+      EOF
+      sudo systemctl restart prometheus-mysqld-exporter
+      sudo systemctl enable prometheus-mysqld-exporter
     SHELL
   end
 
@@ -153,10 +92,73 @@ Vagrant.configure("2") do |config|
       mysql -u root -pslavepassword < /vagrant/masterdump.sql
       mysql -u root -pslavepassword -e "START SLAVE;"
       # Create .my.cnf for root user
-      echo "[client]" > /home/vagrant/.my.cnf
-      echo "user=root" >> /home/vagrant/.my.cnf
-      echo "password=rootpassword" >> /home/vagrant/.my.cnf
-      chmod 600 /home/vagrant/.my.cnf
+      echo "[client]" > /var/lib/prometheus/.my.cnf
+      echo "user=root" >> /var/lib/prometheus/.my.cnf
+      echo "password=rootpassword" >> /var/lib/prometheus/.my.cnf
+      chmod 600 /var/lib/prometheus/.my.cnf
+      # Install MySQL Exporter
+      sudo apt-get install -y prometheus-mysqld-exporter
+      sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
+      DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/"
+      EOF
+      sudo systemctl restart prometheus-mysqld-exporter
+      sudo systemctl enable prometheus-mysqld-exporter
+    SHELL
+  end
+
+  # Define the monitoring VM using VirtualBox provider
+  config.vm.define "monitoring" do |monitoring|
+    monitoring.vm.box = "ubuntu/focal64"
+    monitoring.vm.network "private_network", ip: "10.11.12.104"
+    monitoring.vm.hostname = "monitoring"
+    monitoring.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = 2
+    end
+    monitoring.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update
+      sudo apt-get install -y gnupg software-properties-common
+      wget -q -O /tmp/KEY.gpg https://packages.grafana.com/gpg.key
+      sudo apt-key add /tmp/KEY.gpg
+      echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+      sudo apt-get update
+      sudo apt-get install -y grafana
+      sudo systemctl start grafana-server
+      sudo systemctl enable grafana-server
+
+      # Install Prometheus
+      sudo apt-get install -y prometheus
+      sudo systemctl start prometheus
+      sudo systemctl enable prometheus
+
+      # Configure Prometheus
+      sudo mkdir -p /etc/prometheus
+      cat <<EOF | sudo tee /etc/prometheus/prometheus.yml
+      global:
+        scrape_interval: 15s
+      scrape_configs:
+        - job_name: 'mysql-master'
+          static_configs:
+            - targets: ['10.11.12.101:9104']
+        - job_name: 'mysql-slave1'
+          static_configs:
+            - targets: ['10.11.12.102:9104']
+        - job_name: 'mysql-slave2'
+          static_configs:
+            - targets: ['10.11.12.103:9104']
+      EOF
+
+      sudo systemctl restart prometheus
+      sudo systemctl enable prometheus
+
+      # Open port for Grafana
+      sudo ufw allow 3000/tcp
+
+      # Print Grafana login information
+      echo "Grafana is running on http://10.11.12.104:3000"
+      echo "Username: admin"
+      echo "Password: admin (Please change this password immediately!)"
+
     SHELL
   end
 end
