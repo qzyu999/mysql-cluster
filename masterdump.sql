@@ -178,7 +178,7 @@ CREATE TABLE `engine_cost` (
 
 LOCK TABLES `engine_cost` WRITE;
 /*!40000 ALTER TABLE `engine_cost` DISABLE KEYS */;
-INSERT INTO `engine_cost` (`engine_name`, `device_type`, `cost_name`, `cost_value`, `last_update`, `comment`) VALUES ('default',0,'io_block_read_cost',NULL,'2024-07-05 23:52:32',NULL),('default',0,'memory_block_read_cost',NULL,'2024-07-05 23:52:32',NULL);
+INSERT INTO `engine_cost` (`engine_name`, `device_type`, `cost_name`, `cost_value`, `last_update`, `comment`) VALUES ('default',0,'io_block_read_cost',NULL,'2024-07-06 00:15:43',NULL),('default',0,'memory_block_read_cost',NULL,'2024-07-06 00:15:43',NULL);
 /*!40000 ALTER TABLE `engine_cost` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,7 +358,7 @@ UNLOCK TABLES;
 --
 
 /*!40000 ALTER TABLE `innodb_index_stats` DISABLE KEYS */;
-INSERT  IGNORE INTO `innodb_index_stats` VALUES ('mysql','component','PRIMARY','2024-07-05 23:52:32','n_diff_pfx01',0,1,'component_id'),('mysql','component','PRIMARY','2024-07-05 23:52:32','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','component','PRIMARY','2024-07-05 23:52:32','size',1,NULL,'Number of pages in the index'),('sys','sys_config','PRIMARY','2024-07-05 23:52:33','n_diff_pfx01',2,1,'variable'),('sys','sys_config','PRIMARY','2024-07-05 23:52:33','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('sys','sys_config','PRIMARY','2024-07-05 23:52:33','size',1,NULL,'Number of pages in the index');
+INSERT  IGNORE INTO `innodb_index_stats` VALUES ('mysql','component','PRIMARY','2024-07-06 00:15:43','n_diff_pfx01',0,1,'component_id'),('mysql','component','PRIMARY','2024-07-06 00:15:43','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('mysql','component','PRIMARY','2024-07-06 00:15:43','size',1,NULL,'Number of pages in the index'),('sys','sys_config','PRIMARY','2024-07-06 00:15:43','n_diff_pfx01',2,1,'variable'),('sys','sys_config','PRIMARY','2024-07-06 00:15:43','n_leaf_pages',1,NULL,'Number of leaf pages in the index'),('sys','sys_config','PRIMARY','2024-07-06 00:15:43','size',1,NULL,'Number of pages in the index');
 /*!40000 ALTER TABLE `innodb_index_stats` ENABLE KEYS */;
 
 --
@@ -366,7 +366,7 @@ INSERT  IGNORE INTO `innodb_index_stats` VALUES ('mysql','component','PRIMARY','
 --
 
 /*!40000 ALTER TABLE `innodb_table_stats` DISABLE KEYS */;
-INSERT  IGNORE INTO `innodb_table_stats` VALUES ('mysql','component','2024-07-05 23:52:32',0,1,0),('sys','sys_config','2024-07-05 23:52:33',2,1,0);
+INSERT  IGNORE INTO `innodb_table_stats` VALUES ('mysql','component','2024-07-06 00:15:43',0,1,0),('sys','sys_config','2024-07-06 00:15:43',2,1,0);
 /*!40000 ALTER TABLE `innodb_table_stats` ENABLE KEYS */;
 
 --
@@ -474,7 +474,7 @@ CREATE TABLE `proxies_priv` (
 
 LOCK TABLES `proxies_priv` WRITE;
 /*!40000 ALTER TABLE `proxies_priv` DISABLE KEYS */;
-INSERT INTO `proxies_priv` VALUES ('localhost','root','','',1,'boot@','2024-07-05 23:52:32');
+INSERT INTO `proxies_priv` VALUES ('localhost','root','','',1,'boot@','2024-07-06 00:15:43');
 /*!40000 ALTER TABLE `proxies_priv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -633,7 +633,7 @@ CREATE TABLE `server_cost` (
 
 LOCK TABLES `server_cost` WRITE;
 /*!40000 ALTER TABLE `server_cost` DISABLE KEYS */;
-INSERT INTO `server_cost` (`cost_name`, `cost_value`, `last_update`, `comment`) VALUES ('disk_temptable_create_cost',NULL,'2024-07-05 23:52:32',NULL),('disk_temptable_row_cost',NULL,'2024-07-05 23:52:32',NULL),('key_compare_cost',NULL,'2024-07-05 23:52:32',NULL),('memory_temptable_create_cost',NULL,'2024-07-05 23:52:32',NULL),('memory_temptable_row_cost',NULL,'2024-07-05 23:52:32',NULL),('row_evaluate_cost',NULL,'2024-07-05 23:52:32',NULL);
+INSERT INTO `server_cost` (`cost_name`, `cost_value`, `last_update`, `comment`) VALUES ('disk_temptable_create_cost',NULL,'2024-07-06 00:15:43',NULL),('disk_temptable_row_cost',NULL,'2024-07-06 00:15:43',NULL),('key_compare_cost',NULL,'2024-07-06 00:15:43',NULL),('memory_temptable_create_cost',NULL,'2024-07-06 00:15:43',NULL),('memory_temptable_row_cost',NULL,'2024-07-06 00:15:43',NULL),('row_evaluate_cost',NULL,'2024-07-06 00:15:43',NULL);
 /*!40000 ALTER TABLE `server_cost` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -798,7 +798,7 @@ CREATE TABLE `tables_priv` (
 
 LOCK TABLES `tables_priv` WRITE;
 /*!40000 ALTER TABLE `tables_priv` DISABLE KEYS */;
-INSERT INTO `tables_priv` VALUES ('localhost','mysql','mysql.session','user','boot@','2024-07-05 23:52:32','Select',''),('localhost','sys','mysql.sys','sys_config','root@localhost','2024-07-05 23:52:33','Select','');
+INSERT INTO `tables_priv` VALUES ('localhost','mysql','mysql.session','user','boot@','2024-07-06 00:15:43','Select',''),('localhost','sys','mysql.sys','sys_config','root@localhost','2024-07-06 00:15:43','Select','');
 /*!40000 ALTER TABLE `tables_priv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -990,7 +990,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('%','repl','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'mysql_native_password','*978E3885B0036AD8EA2B7565855F6776B8A43B4A','N','2024-07-05 23:52:50',NULL,'N','N','N',NULL,NULL,NULL,NULL),('localhost','debian-sys-maint','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'caching_sha2_password','$A$005$J%o305wv::k(?B{\noAsEVG.1NAWuwETTg2yvqwSDAFkLhIC/SWoYqksDP71','N','2024-07-05 23:52:33',NULL,'N','Y','Y',NULL,NULL,NULL,NULL),('localhost','mysql.infoschema','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED','N','2024-07-05 23:52:32',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.session','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED','N','2024-07-05 23:52:32',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.sys','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED','N','2024-07-05 23:52:33',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','root','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'mysql_native_password','*B638EC5422004FCF44EE84FABA603D29A2259BC0','N','2024-07-05 23:52:50',NULL,'N','Y','Y',NULL,NULL,NULL,NULL);
+INSERT INTO `user` VALUES ('%','repl','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'mysql_native_password','*978E3885B0036AD8EA2B7565855F6776B8A43B4A','N','2024-07-06 00:16:01',NULL,'N','N','N',NULL,NULL,NULL,NULL),('localhost','debian-sys-maint','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'caching_sha2_password','$A$005$Q~hFR9!JLYkx_}F6zxfaEkWmgCmFfyOfj2pD.huV7z1XpI9jtUYPY146o1','N','2024-07-06 00:15:44',NULL,'N','Y','Y',NULL,NULL,NULL,NULL),('localhost','mysql.infoschema','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED','N','2024-07-06 00:15:43',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.session','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','Y','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED','N','2024-07-06 00:15:43',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','mysql.sys','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','N','','','','',0,0,0,0,'caching_sha2_password','$A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED','N','2024-07-06 00:15:43',NULL,'Y','N','N',NULL,NULL,NULL,NULL),('localhost','root','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','','','','',0,0,0,0,'mysql_native_password','*B638EC5422004FCF44EE84FABA603D29A2259BC0','N','2024-07-06 00:16:01',NULL,'N','Y','Y',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1042,4 +1042,4 @@ CREATE TABLE IF NOT EXISTS `slow_log` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-05 23:52:50
+-- Dump completed on 2024-07-06  0:16:01

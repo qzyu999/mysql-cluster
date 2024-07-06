@@ -25,9 +25,9 @@ Vagrant.configure("2") do |config|
       mysqldump -u root -prootpassword --all-databases --master-data > /vagrant/masterdump.sql
       # Create .my.cnf for root user
       sudo mkdir -p /var/lib/prometheus/
-      echo "[client]" > /var/lib/prometheus/.my.cnf
-      echo "user=root" >> /var/lib/prometheus/.my.cnf
-      echo "password=rootpassword" >> /var/lib/prometheus/.my.cnf
+      echo "[client]" | sudo tee /var/lib/prometheus/.my.cnf
+      echo "user=root" | sudo tee -a /var/lib/prometheus/.my.cnf
+      echo "password=rootpassword" | sudo tee -a /var/lib/prometheus/.my.cnf
       sudo chmod 600 /var/lib/prometheus/.my.cnf
       # Install MySQL Exporter
       sudo apt-get install -y prometheus-mysqld-exporter
@@ -60,9 +60,9 @@ Vagrant.configure("2") do |config|
       mysql -u root -pslavepassword -e "START SLAVE;"
       # Create .my.cnf for root user
       sudo mkdir -p /var/lib/prometheus/
-      echo "[client]" > /var/lib/prometheus/.my.cnf
-      echo "user=root" >> /var/lib/prometheus/.my.cnf
-      echo "password=rootpassword" >> /var/lib/prometheus/.my.cnf
+      echo "[client]" | sudo tee /var/lib/prometheus/.my.cnf
+      echo "user=root" | sudo tee -a /var/lib/prometheus/.my.cnf
+      echo "password=rootpassword" | sudo tee -a /var/lib/prometheus/.my.cnf
       sudo chmod 600 /var/lib/prometheus/.my.cnf
       # Install MySQL Exporter
       sudo apt-get install -y prometheus-mysqld-exporter
@@ -95,9 +95,9 @@ Vagrant.configure("2") do |config|
       mysql -u root -pslavepassword -e "START SLAVE;"
       # Create .my.cnf for root user
       sudo mkdir -p /var/lib/prometheus/
-      echo "[client]" > /var/lib/prometheus/.my.cnf
-      echo "user=root" >> /var/lib/prometheus/.my.cnf
-      echo "password=rootpassword" >> /var/lib/prometheus/.my.cnf
+      echo "[client]" | sudo tee /var/lib/prometheus/.my.cnf
+      echo "user=root" | sudo tee -a /var/lib/prometheus/.my.cnf
+      echo "password=rootpassword" | sudo tee -a /var/lib/prometheus/.my.cnf
       sudo chmod 600 /var/lib/prometheus/.my.cnf
       # Install MySQL Exporter
       sudo apt-get install -y prometheus-mysqld-exporter
