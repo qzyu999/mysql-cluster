@@ -137,19 +137,19 @@ Vagrant.configure("2") do |config|
       # Configure Prometheus
       sudo mkdir -p /etc/prometheus
       cat <<EOF | sudo tee /etc/prometheus/prometheus.yml
-      global:
-        scrape_interval: 15s
-      scrape_configs:
-        - job_name: 'mysql-master'
-          static_configs:
-            - targets: ['10.11.12.101:9104']
-        - job_name: 'mysql-slave1'
-          static_configs:
-            - targets: ['10.11.12.102:9104']
-        - job_name: 'mysql-slave2'
-          static_configs:
-            - targets: ['10.11.12.103:9104']
-      EOF
+global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: 'mysql-master'
+    static_configs:
+      - targets: ['10.11.12.101:9104']
+  - job_name: 'mysql-slave1'
+    static_configs:
+      - targets: ['10.11.12.102:9104']
+  - job_name: 'mysql-slave2'
+    static_configs:
+      - targets: ['10.11.12.103:9104']
+EOF
 
       sudo systemctl restart prometheus
       sudo systemctl enable prometheus
