@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
     end
     master.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update
-      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
+      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server prometheus-mysqld-exporter
       sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.101/" /etc/mysql/mysql.conf.d/mysqld.cnf
       echo "server-id = 1" | sudo tee -a /etc/mysql/mysql.conf.d/mysqld.cnf
       echo "log_bin = /var/log/mysql/mysql-bin.log" | sudo tee -a /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
       sudo mysql -u root -prootpassword -e "CREATE USER 'repl'@'%' IDENTIFIED WITH mysql_native_password BY 'slavepassword';"
       sudo mysql -u root -prootpassword -e "GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';"
       mysqldump -u root -prootpassword --all-databases --master-data > /vagrant/masterdump.sql
-      # Create .my.cnf for root user
+      # Create .my.cnf for prometheus user
       sudo mkdir -p /var/lib/prometheus/
       sudo chown prometheus:prometheus /var/lib/prometheus
       sudo chmod 755 /var/lib/prometheus
@@ -32,8 +32,7 @@ Vagrant.configure("2") do |config|
       echo "password=rootpassword" | sudo tee -a /var/lib/prometheus/.my.cnf
       sudo chown prometheus:prometheus /var/lib/prometheus/.my.cnf
       sudo chmod 600 /var/lib/prometheus/.my.cnf
-      # Install MySQL Exporter
-      sudo apt-get install -y prometheus-mysqld-exporter
+      # Configure MySQL Exporter
       sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
       DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/"
       EOF
@@ -53,7 +52,7 @@ Vagrant.configure("2") do |config|
     end
     slave1.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update
-      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
+      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server prometheus-mysqld-exporter
       sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.102/" /etc/mysql/mysql.conf.d/mysqld.cnf
       echo "server-id = 2" | sudo tee -a /etc/mysql/mysql.conf.d/mysqld.cnf
       sudo service mysql restart
@@ -61,7 +60,7 @@ Vagrant.configure("2") do |config|
       mysql -u root -pslavepassword -e "CHANGE MASTER TO MASTER_HOST='10.11.12.101', MASTER_USER='repl', MASTER_PASSWORD='slavepassword';"
       mysql -u root -pslavepassword < /vagrant/masterdump.sql
       mysql -u root -pslavepassword -e "START SLAVE;"
-      # Create .my.cnf for root user
+      # Create .my.cnf for prometheus user
       sudo mkdir -p /var/lib/prometheus/
       sudo chown prometheus:prometheus /var/lib/prometheus
       sudo chmod 755 /var/lib/prometheus
@@ -70,8 +69,7 @@ Vagrant.configure("2") do |config|
       echo "password=rootpassword" | sudo tee -a /var/lib/prometheus/.my.cnf
       sudo chown prometheus:prometheus /var/lib/prometheus/.my.cnf
       sudo chmod 600 /var/lib/prometheus/.my.cnf
-      # Install MySQL Exporter
-      sudo apt-get install -y prometheus-mysqld-exporter
+      # Configure MySQL Exporter
       sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
       DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/"
       EOF
@@ -91,7 +89,7 @@ Vagrant.configure("2") do |config|
     end
     slave2.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update
-      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
+      sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server prometheus-mysqld-exporter
       sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.103/" /etc/mysql/mysql.conf.d/mysqld.cnf
       echo "server-id = 3" | sudo tee -a /etc/mysql/mysql.conf.d/mysqld.cnf
       sudo service mysql restart
@@ -99,7 +97,7 @@ Vagrant.configure("2") do |config|
       mysql -u root -pslavepassword -e "CHANGE MASTER TO MASTER_HOST='10.11.12.101', MASTER_USER='repl', MASTER_PASSWORD='slavepassword';"
       mysql -u root -pslavepassword < /vagrant/masterdump.sql
       mysql -u root -pslavepassword -e "START SLAVE;"
-      # Create .my.cnf for root user
+      # Create .my.cnf for prometheus user
       sudo mkdir -p /var/lib/prometheus/
       sudo chown prometheus:prometheus /var/lib/prometheus
       sudo chmod 755 /var/lib/prometheus
@@ -108,8 +106,7 @@ Vagrant.configure("2") do |config|
       echo "password=rootpassword" | sudo tee -a /var/lib/prometheus/.my.cnf
       sudo chown prometheus:prometheus /var/lib/prometheus/.my.cnf
       sudo chmod 600 /var/lib/prometheus/.my.cnf
-      # Install MySQL Exporter
-      sudo apt-get install -y prometheus-mysqld-exporter
+      # Configure MySQL Exporter
       sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
       DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/"
       EOF
