@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
 
       # Configure MySQL Exporter
       sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
-DATA_SOURCE_NAME="root:rootpassword@(10.11.12.101:3306)/?allowCleartextPasswords=true"
+DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/?allowCleartextPasswords=true"
 EOF
       sudo systemctl restart prometheus-mysqld-exporter
       sudo systemctl enable prometheus-mysqld-exporter
@@ -88,7 +88,7 @@ EOF
 
       # Configure MySQL Exporter
       sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
-DATA_SOURCE_NAME="root:rootpassword@(10.11.12.102:3306)/?allowCleartextPasswords=true"
+DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/?allowCleartextPasswords=true"
 EOF
       sudo systemctl restart prometheus-mysqld-exporter
       sudo systemctl enable prometheus-mysqld-exporter
@@ -134,7 +134,7 @@ EOF
 
       # Configure MySQL Exporter
       sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
-DATA_SOURCE_NAME="root:rootpassword@(10.11.12.103:3306)/?allowCleartextPasswords=true"
+DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/?allowCleartextPasswords=true"
 EOF
       sudo systemctl restart prometheus-mysqld-exporter
       sudo systemctl enable prometheus-mysqld-exporter
