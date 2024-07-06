@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
       # sudo systemctl restart mysql
 
       # Modify MySQL bind-address
-      sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.101/" /etc/mysql/mysql.conf.d/mysqld.cnf
+      # sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.101/" /etc/mysql/mysql.conf.d/mysqld.cnf
       echo "server-id = 1" | sudo tee -a /etc/mysql/mysql.conf.d/mysqld.cnf
       echo "log_bin = /var/log/mysql/mysql-bin.log" | sudo tee -a /etc/mysql/mysql.conf.d/mysqld.cnf
       sudo service mysql restart
@@ -66,7 +66,7 @@ EOF
       # sudo systemctl restart mysql
 
       # Modify MySQL bind-address
-      sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.102/" /etc/mysql/mysql.conf.d/mysqld.cnf
+      # sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.102/" /etc/mysql/mysql.conf.d/mysqld.cnf
       echo "server-id = 2" | sudo tee -a /etc/mysql/mysql.conf.d/mysqld.cnf
       sudo service mysql restart
 
@@ -112,7 +112,7 @@ EOF
       # sudo systemctl restart mysql
 
       # Modify MySQL bind-address
-      sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.103/" /etc/mysql/mysql.conf.d/mysqld.cnf
+      # sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.103/" /etc/mysql/mysql.conf.d/mysqld.cnf
       echo "server-id = 3" | sudo tee -a /etc/mysql/mysql.conf.d/mysqld.cnf
       sudo service mysql restart
 
