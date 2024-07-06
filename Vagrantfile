@@ -33,9 +33,7 @@ Vagrant.configure("2") do |config|
       sudo chown prometheus:prometheus /var/lib/prometheus/.my.cnf
       sudo chmod 600 /var/lib/prometheus/.my.cnf
       # Configure MySQL Exporter
-      sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
-      DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/"
-      EOF
+      sudo sh -c 'echo "DATA_SOURCE_NAME=\"root:rootpassword@(localhost:3306)/\"" > /etc/default/prometheus-mysqld-exporter'
       sudo systemctl restart prometheus-mysqld-exporter
       sudo systemctl enable prometheus-mysqld-exporter
     SHELL
@@ -70,9 +68,7 @@ Vagrant.configure("2") do |config|
       sudo chown prometheus:prometheus /var/lib/prometheus/.my.cnf
       sudo chmod 600 /var/lib/prometheus/.my.cnf
       # Configure MySQL Exporter
-      sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
-      DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/"
-      EOF
+      sudo sh -c 'echo "DATA_SOURCE_NAME=\"root:rootpassword@(localhost:3306)/\"" > /etc/default/prometheus-mysqld-exporter'
       sudo systemctl restart prometheus-mysqld-exporter
       sudo systemctl enable prometheus-mysqld-exporter
     SHELL
@@ -107,9 +103,7 @@ Vagrant.configure("2") do |config|
       sudo chown prometheus:prometheus /var/lib/prometheus/.my.cnf
       sudo chmod 600 /var/lib/prometheus/.my.cnf
       # Configure MySQL Exporter
-      sudo tee /etc/default/prometheus-mysqld-exporter <<EOF
-      DATA_SOURCE_NAME="root:rootpassword@(localhost:3306)/"
-      EOF
+      sudo sh -c 'echo "DATA_SOURCE_NAME=\"root:rootpassword@(localhost:3306)/\"" > /etc/default/prometheus-mysqld-exporter'
       sudo systemctl restart prometheus-mysqld-exporter
       sudo systemctl enable prometheus-mysqld-exporter
     SHELL
