@@ -16,8 +16,8 @@ Vagrant.configure("2") do |config|
       sudo apt-get update
       sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server prometheus-mysqld-exporter
 
-      sudo sed -i '/^\[mysqld\]/a bind-address = 127.0.0.1' /etc/mysql/my.cnf
-      sudo systemctl restart mysql
+      # sudo sed -i '/^\[mysqld\]/a bind-address = 127.0.0.1' /etc/mysql/my.cnf
+      # sudo systemctl restart mysql
 
       # Modify MySQL bind-address
       sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.101/" /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -62,8 +62,8 @@ EOF
       sudo apt-get update
       sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server prometheus-mysqld-exporter
 
-      sudo sed -i '/^\[mysqld\]/a bind-address = 127.0.0.1' /etc/mysql/my.cnf
-      sudo systemctl restart mysql
+      # sudo sed -i '/^\[mysqld\]/a bind-address = 127.0.0.1' /etc/mysql/my.cnf
+      # sudo systemctl restart mysql
 
       # Modify MySQL bind-address
       sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.102/" /etc/mysql/mysql.conf.d/mysqld.cnf
@@ -108,8 +108,8 @@ EOF
       sudo apt-get update
       sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server prometheus-mysqld-exporter
 
-      sudo sed -i '/^\[mysqld\]/a bind-address = 127.0.0.1' /etc/mysql/my.cnf
-      sudo systemctl restart mysql
+      # sudo sed -i '/^\[mysqld\]/a bind-address = 127.0.0.1' /etc/mysql/my.cnf
+      # sudo systemctl restart mysql
 
       # Modify MySQL bind-address
       sudo sed -i "s/^bind-address.*/bind-address = 10.11.12.103/" /etc/mysql/mysql.conf.d/mysqld.cnf
