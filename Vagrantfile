@@ -102,7 +102,12 @@ Vagrant.configure("2") do |config|
       sudo mv  mysqld_exporter-*.linux-amd64/mysqld_exporter /usr/local/bin/
       sudo chmod +x /usr/local/bin/mysqld_exporter
 
-      sudo vi /etc/.mysqld_exporter.cnf
+      sudo tee /etc/.mysqld_exporter.cnf <<EOF
+[client]
+user=mysqld_exporter
+password=exporterpassword
+host=10.11.12.101
+EOF
       sudo groupadd --system prometheus
       sudo useradd -s /sbin/nologin --system -g prometheus prometheus
       sudo chown root:prometheus /etc/.mysqld_exporter.cnf
