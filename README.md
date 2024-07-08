@@ -53,3 +53,4 @@ To do:
 - Have the mysqld_exporter listen on all database nodes (not just master).
 - Make a secure way to handle secrets.
 - Tune the CPU/memory allocation for the nodes in the cluster.
+- Address error messages in Vagrant logs.
