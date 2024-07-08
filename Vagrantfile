@@ -26,11 +26,12 @@ Vagrant.configure("2") do |config|
       sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'rootpassword';"
       sudo mysql -u root -prootpassword -e "CREATE USER 'repl'@'%' IDENTIFIED WITH mysql_native_password BY 'slavepassword';"
       sudo mysql -u root -prootpassword -e "GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';"
-
       sudo mysql -u root -prootpassword -e "CREATE USER 'mysqld_exporter'@'10.11.12.104' IDENTIFIED BY 'exporterpassword' WITH MAX_USER_CONNECTIONS 2;"
       sudo mysql -u root -prootpassword -e "GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'mysqld_exporter'@'10.11.12.104';"
       sudo mysql -u root -prootpassword -e "GRANT SELECT ON performance_schema.* TO 'mysqld_exporter'@'10.11.12.104';"
       sudo mysql -u root -prootpassword -e "FLUSH PRIVILEGES;"
+
+      mysqldump -u root -prootpassword --all-databases --master-data > /vagrant/masterdump.sql
     SHELL
   end
 
@@ -170,7 +171,7 @@ EOF
       sudo mv prometheus.yml  /etc/prometheus/prometheus.yml
       sudo mv consoles/ console_libraries/ /etc/prometheus/
 
-cat <<EOF | sudo tee /etc/systemd/system/prometheus.service
+      cat <<EOF | sudo tee /etc/systemd/system/prometheus.service
 [Unit]
 Description=Prometheus
 Documentation=https://prometheus.io/docs/introduction/overview/
