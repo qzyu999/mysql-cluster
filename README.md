@@ -6,6 +6,7 @@ Main references:
 - [https://help.scalegrid.io/docs/mysql-connecting-to-prometheus-and-grafana](https://help.scalegrid.io/docs/mysql-connecting-to-prometheus-and-grafana)
 - [https://www.youtube.com/watch?v=q2C1K69pRBY](https://www.youtube.com/watch?v=q2C1K69pRBY)
 - [https://www.youtube.com/watch?v=jc4D7g1xuYg](https://www.youtube.com/watch?v=jc4D7g1xuYg)
+- [https://www.youtube.com/watch?v=cjIb-lKeN5s](https://www.youtube.com/watch?v=cjIb-lKeN5s)
 - [https://www.digitalocean.com/community/tutorials/how-to-measure-mysql-query-performance-with-mysqlslap](https://www.digitalocean.com/community/tutorials/how-to-measure-mysql-query-performance-with-mysqlslap)
 - [https://grafana.com/oss/prometheus/exporters/mysql-exporter/?tab=dashboards](https://grafana.com/oss/prometheus/exporters/mysql-exporter/?tab=dashboards)
 
