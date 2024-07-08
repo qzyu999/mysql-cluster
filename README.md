@@ -33,7 +33,7 @@ Import the MySQL Server Exporter dashboard ID `14057`
 
 `cd employees_db`
 
-`sed -i 's/storage_engine/default_storage_engine/g' employees.sql`
+`sudo sed -i 's/storage_engine/default_storage_engine/g' employees.sql`
 
 `sudo mysql -h localhost -u sysadmin -p -t < employees.sql`
 
