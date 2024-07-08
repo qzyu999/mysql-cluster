@@ -49,3 +49,7 @@ Import the MySQL Server Exporter dashboard ID `14057`
 
 `vagrant destroy -f`
 
+To do:
+- Have the mysqld_exporter listen on all database nodes (not just master).
+- Make a secure way to handle secrets.
+- Tune the CPU/memory allocation for the nodes in the cluster.
