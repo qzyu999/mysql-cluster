@@ -1,6 +1,14 @@
 # Local MySQL Cluster with Monitoring via Grafana
 Example MySQL cluster in a local environment
 
+Main references:
+- [https://www.linuxtrainingacademy.com/mysql-master-slave-replication-ubuntu-linux/](https://www.linuxtrainingacademy.com/mysql-master-slave-replication-ubuntu-linux/)
+- [https://help.scalegrid.io/docs/mysql-connecting-to-prometheus-and-grafana](https://help.scalegrid.io/docs/mysql-connecting-to-prometheus-and-grafana)
+- [https://www.youtube.com/watch?v=q2C1K69pRBY](https://www.youtube.com/watch?v=q2C1K69pRBY)
+- [https://www.youtube.com/watch?v=jc4D7g1xuYg](https://www.youtube.com/watch?v=jc4D7g1xuYg)
+- [https://www.digitalocean.com/community/tutorials/how-to-measure-mysql-query-performance-with-mysqlslap](https://www.digitalocean.com/community/tutorials/how-to-measure-mysql-query-performance-with-mysqlslap)
+- [https://grafana.com/oss/prometheus/exporters/mysql-exporter/?tab=dashboards](https://grafana.com/oss/prometheus/exporters/mysql-exporter/?tab=dashboards)
+
 To start:
 
 `vagrant up`
